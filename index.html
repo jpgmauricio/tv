@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My AngularJS App</title>
+  <link rel="stylesheet" href="css/foundation.css">
+  <script src="js/vendor/custom.modernizr.js"></script>
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+   <link rel="stylesheet" href="css/app.css"/>
+</head>
+<body >
+  <ul class="menu">
+    <li><a href="#/view1">view1</a></li>
+    <li><a href="#/view2">view2</a></li>
+  </ul>
+
+  <!---<div ng-view></div>-->
+
+  <!-- ng-init="init()" Função do controller que vai ser iniciada quando o documento estiver carregado -->
+  <div class="container main-frame" ng-app="TVPremieresApp" ng-controller="mainController" ng-init="init()">
+
+      <li ng-repeat="tvshow in results">
+          <div class="row mainDiv">
+              <div class="small-2 large-4 columns">
+                  <img src="{{tvshow.episode.images.screen}}" />
+                  <div class="ratings">
+                    <strong>Ratings:</strong> 
+                    <span class="label">
+                      <i class="icon-thumbs-up"></i> {{tvshow.episode.ratings.loved}}
+                    </span>
+                    <span class="label">
+                      <i class="icon-thumbs-down"></i> {{tvshow.episode.ratings.hated}}
+                    </span> 
+                    <span class="label label-important" ng-class="{'label-success': tvshow.episode.ratings.percentage >= 50}">
+                    <strong>%</strong> {{tvshow.episode.ratings.percentage}}
+                  </div>
+              </div>
+              <div class="small-4 large-4 columns">
+                  <h3>{{tvshow.show.title}}: {{tvshow.episode.title}}</h3>
+                  <p>{{tvshow.episode.overview}}</p>
+              </div>
+              <div class="small-6 large-4 columns">
+                  <div class="fulldate pull-right label label-info">{{tvshow.date}}</div>
+                  <ul class="show-info">
+                      <li><strong>On Air:</strong> {{tvshow.show.air_day}} {{tvshow.show.air_time}}</li>
+                      <li><strong>Network:</strong> {{tvshow.show.network}}</li>
+                      <li><strong>Season #:</strong> {{tvshow.episode.season}}</li>
+                      <li><strong>Genres:</strong> <span class="label label-inverse genre" ng-repeat="genre in tvshow.show.genres">{{genre}}</span></li>
+                  </ul>
+              </div>
+          </div>
+      </li>
+
+  </div>
+
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+
+  <script src="js/foundation.min.js"></script>
+
+
+  <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
